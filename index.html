@@ -699,7 +699,7 @@ function makeVideo(e,label){
  const box=document.createElement('div'); box.className='tlv';
  box.innerHTML='<video controls playsinline preload="metadata"></video><div class="verr">El video no se pudo cargar en este navegador.</div>';
  const vd=box.querySelector('video'); if(e.poster)vd.poster=e.poster; vd.setAttribute('aria-label',label);
- const isUrl=/^(\/|https?:)/.test(e.vid||'');
+ const isUrl=/^(\/|https?:|media\/)/.test(e.vid||'');
  let tries=0; vd.addEventListener('error',()=>{tries++; if(!isUrl&&tries===1){vd.src=videoData(e.vid);} else box.classList.add('err');});
  vd.src=isUrl?e.vid:videoURL(e.vid);
  return box;
